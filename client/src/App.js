@@ -1,42 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Axios from 'axios';
+import Pornlist from './Pornlist'
+
+
 
 function App() {
-  const [ data, setData ] = useState();
+  const [ porn, setPorn ] = useState([]);
+  const [currentUrl,setCurrentUrl] =useState(`http://localhost:4040/search?q=asian`);
+  const [preview,setPreview]=useState()
+
 
   useEffect(() => {
     fetchAsianPorn();
-  }, []);
+  }, [currentUrl]);
 
   const fetchAsianPorn = async() => {
     await Axios({
       method: 'GET',
-      url: `http://localhost:4040/search?q=asian`,
+      url: currentUrl,
     }).then(res => {
-      console.log(res);
+      console.log(res)
+      //console.log(res.data.map(p => p.title))
+      setPorn(res.data.map(pornTitle => pornTitle.title))
+      setPreview(res.data.map(pornPreview =>pornPreview.Preview))
+    
+      
     }).catch(err => {
       console.error(err);
     })
   }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+          
+          <Pornlist porn={porn} />
   );
 }
 

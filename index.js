@@ -3,11 +3,13 @@ const app = express()
 const PornHub = require('pornhub.js')
 const pornhub = new PornHub()
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 app.use(bodyParser());
+app.use(cors());
 
 app.get('/', (req, res, next) => {
-    res.json({res: 'ssdsd'})
+    res.json({})
 })
 
 app.get('/search', (req, res, next) => {

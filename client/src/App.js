@@ -6,7 +6,7 @@ import Pornlist from './Pornlist'
 
 function App() {
   const [ porn, setPorn ] = useState([]);
-  const [currentUrl,setCurrentUrl] =useState(`http://localhost:4040/search?q=asian`);
+  const [currentUrl,setCurrentUrl] =useState(`http://localhost:4040/search?q=asa`);
   const [preview,setPreview]=useState()
 
 
